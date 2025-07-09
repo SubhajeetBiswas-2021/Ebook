@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.subhajeet.ebook.ui.theme.EbookTheme
+import com.subhajeet.ebook.ui.theme.screen.TabScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,10 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             EbookTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    TabScreen()
                 }
             }
         }

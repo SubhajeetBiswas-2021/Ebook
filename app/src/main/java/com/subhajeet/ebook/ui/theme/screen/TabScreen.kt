@@ -22,7 +22,8 @@ import kotlinx.coroutines.launch
 fun TabScreen() {
     val tabs = listOf(
         TableItem(title = "Categories", icon = Icons.Default.Category, filledIcon = Icons.Filled.Category) ,
-
+        TableItem(title = "Books", icon = Icons.Default.Book, filledIcon = Icons.Filled.Book)
+        //Add more tabs as needed
     )
 
     val pagerState = rememberPagerState(pageCount = {tabs.size}) //It is a state it knows currently which state is selected

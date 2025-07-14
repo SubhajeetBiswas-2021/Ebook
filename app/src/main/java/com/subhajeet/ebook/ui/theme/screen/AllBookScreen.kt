@@ -1,10 +1,12 @@
 package com.subhajeet.ebook.ui.theme.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,6 +16,7 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
@@ -31,23 +34,51 @@ fun AllBookScreen() {
 )
 @Composable
 fun eachCard() {
-   Card(modifier = Modifier.fillMaxWidth().padding(8.dp,28.dp).height(100.dp)) {
+   Card(modifier = Modifier.padding(8.dp,28.dp,0.dp,0.dp).height(100.dp)) {
 
-       Row(modifier = Modifier) {
+       /*Row(modifier = Modifier.fillMaxWidth()) {
            Image(
                imageVector = Icons.Default.Face,
                contentDescription = null,
                modifier = Modifier.fillMaxHeight().padding(18.dp).height(80.dp).width(49.dp)
            )
+           Spacer(modifier=Modifier.width(8.dp))
+
            Column(modifier = Modifier) {
 
-            Text(text =" Title", fontSize = 30.sp, textAlign = TextAlign.Justify)
+            Text(text =" Title", fontSize = 30.sp, textAlign = TextAlign.Center)
 
-               Spacer(modifier = Modifier.height(8.dp))
-
-               Text(text ="Author", fontSize = 20.sp, textAlign = TextAlign.Center)
            }
-       }
+
+           Column(modifier = Modifier.padding(40.dp)) {
+               Text(text ="Author", fontSize = 20.sp, textAlign = TextAlign.End)
+           }
+       }*/
+
+       Box(modifier = Modifier.fillMaxSize()){
+               Image(
+                   imageVector = Icons.Default.Face,
+                   contentDescription = null,
+                   modifier = Modifier.fillMaxHeight().padding(18.dp).height(80.dp).width(49.dp)
+               )
+
+               Spacer(modifier=Modifier.width(8.dp))
+
+                Text(text =" Title", fontSize = 30.sp, textAlign = TextAlign.Center, modifier = Modifier.align(
+                       Alignment.TopCenter))
+
+           Text(
+               text = "Author",
+               fontSize = 16.sp,
+               fontStyle = FontStyle.Italic,
+               textAlign = TextAlign.End,
+               modifier = Modifier
+                   .align(Alignment.BottomEnd)
+                   .padding(end = 12.dp, bottom = 8.dp)
+           )
+
+
+           }
    }
 
 

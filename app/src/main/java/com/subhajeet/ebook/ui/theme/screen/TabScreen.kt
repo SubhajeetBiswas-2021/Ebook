@@ -52,8 +52,8 @@ fun TabScreen() {
         HorizontalPager(state = pagerState) {
 
             when(it){
-                0 -> Text(text = "Categories")
-                1 -> Text(text = "Books")
+                0 -> CategoriesScreen()
+                1 -> AllBookScreen()
             }
         }
     }

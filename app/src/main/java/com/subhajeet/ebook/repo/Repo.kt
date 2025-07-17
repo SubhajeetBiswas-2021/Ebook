@@ -1,0 +1,43 @@
+package com.subhajeet.ebook.repo
+
+import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
+import com.subhajeet.ebook.common.ResultState
+import com.subhajeet.ebook.data.models.bookModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
+
+class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
+
+    fun getAllBooks(): Flow<ResultState<List<bookModel>>> = callbackFlow {
+    //call back is a thing which updates us as any changes happen like in google maps and while using firebase callback is required
+    //In flow if we have to send anything we send it through emit
+    //In callbackflow we send anything through trysend ,trysend is used for emission
+        trySend(ResultState.Loading)  // here we first emit loading
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                //we want to get
+                var items:List<bookModel> = emptyList()
+                //now putting the data on the variable items
+                items = dataSnapshot.children.map {
+                    it.getValue<bookModel>()!!
+                }
+                trySend(ResultState.Success(items))
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+
+            }
+        }
+        firebaseDatabase.reference.child("Books").addValueEventListener(postListener)  //We want to listen the Books child created in firebase
+
+    }
+}

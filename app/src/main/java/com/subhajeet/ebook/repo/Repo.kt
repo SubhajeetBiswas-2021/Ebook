@@ -1,6 +1,5 @@
 package com.subhajeet.ebook.repo
 
-import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -8,6 +7,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.subhajeet.ebook.common.ResultState
 import com.subhajeet.ebook.data.models.bookModel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
@@ -33,11 +33,14 @@ class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-
+                trySend(ResultState.Error(databaseError.message))
 
             }
         }
         firebaseDatabase.reference.child("Books").addValueEventListener(postListener)  //We want to listen the Books child created in firebase
 
+        awaitClose {   //it is important as the callbacks will get generated it will nonstop listen so to stop that it is required and if not given the app will crash
+            close()
+        }
     }
 }

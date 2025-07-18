@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.subhajeet.ebook.common.ResultState
+import com.subhajeet.ebook.data.models.BookCategory
 import com.subhajeet.ebook.data.models.bookModel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -39,6 +40,33 @@ class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
             }
         }
         firebaseDatabase.reference.child("Books").addValueEventListener(postListener)  //We want to listen the Books child created in firebase
+
+        awaitClose {   //it is important as the callbacks will get generated it will nonstop listen so to stop that it is required and if not given the app will crash
+            close()
+        }
+    }
+
+    fun getAllCategories():Flow<ResultState<List<BookCategory>>> = callbackFlow{
+        trySend(ResultState.Loading)  // here we first emit loading
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                //we want to get
+                var items:List<BookCategory> = emptyList()
+                //now putting the data on the variable items
+                items = dataSnapshot.children.map {
+                    it.getValue<BookCategory>()!!
+                }
+                trySend(ResultState.Success(items))
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                trySend(ResultState.Error(databaseError.message))
+
+            }
+        }
+        firebaseDatabase.reference.child("BookCategory").addValueEventListener(postListener)  //We want to listen the BookCategory child created in firebase
 
         awaitClose {   //it is important as the callbacks will get generated it will nonstop listen so to stop that it is required and if not given the app will crash
             close()

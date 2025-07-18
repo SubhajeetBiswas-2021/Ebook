@@ -53,7 +53,7 @@ fun TabScreen() {
 
             when(it){
                 0 -> CategoriesScreen()
-                1 -> AllBookScreen()
+                1 -> AllBookScreen(modifier = Modifier.fillMaxSize())
             }
         }
     }

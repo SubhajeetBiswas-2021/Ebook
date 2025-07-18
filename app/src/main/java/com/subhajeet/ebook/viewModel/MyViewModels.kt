@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.subhajeet.ebook.common.ResultState
 import com.subhajeet.ebook.data.models.bookModel
 import com.subhajeet.ebook.repo.Repo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MyViewModels @Inject constructor(private val repo: Repo) : ViewModel() {
 
     private val _getAllBookState = MutableStateFlow(GetAllBookState())   //if this is used then we change the state from outside only so make it a private variable first and then access it via a public variable

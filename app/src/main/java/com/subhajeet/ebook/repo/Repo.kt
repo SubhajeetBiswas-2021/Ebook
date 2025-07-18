@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
 
+
     fun getAllBooks(): Flow<ResultState<List<bookModel>>> = callbackFlow {
     //call back is a thing which updates us as any changes happen like in google maps and while using firebase callback is required
     //In flow if we have to send anything we send it through emit
@@ -43,4 +44,6 @@ class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
             close()
         }
     }
+
+
 }

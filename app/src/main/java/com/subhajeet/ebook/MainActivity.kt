@@ -11,8 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.subhajeet.ebook.ui.theme.EbookTheme
 import com.subhajeet.ebook.ui.theme.screen.TabScreen
+import com.subhajeet.ebook.ui.theme.screen.nav.NavApp
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,8 +26,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EbookTheme {
+                val navController = rememberNavController() // ✅ Create navController
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    TabScreen()
+                 //   TabScreen(navController = navController)
+                    NavApp()
                 }
             }
         }

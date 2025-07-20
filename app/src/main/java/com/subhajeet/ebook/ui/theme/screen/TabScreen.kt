@@ -16,10 +16,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
-@Preview(showBackground = true, showSystemUi = true)
+//@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun TabScreen() {
+fun TabScreen(navController: NavController) {
     val tabs = listOf(
         TableItem(title = "Categories", icon = Icons.Default.Category, filledIcon = Icons.Filled.Category) ,
         TableItem(title = "Books", icon = Icons.Default.Book, filledIcon = Icons.Filled.Book)
@@ -52,7 +53,9 @@ fun TabScreen() {
         HorizontalPager(state = pagerState) {
 
             when(it){
-                0 -> CategoriesScreen()
+                0 -> CategoriesScreen(
+                    navController = navController
+                )
                 1 -> AllBookScreen(modifier = Modifier.fillMaxSize())
             }
         }

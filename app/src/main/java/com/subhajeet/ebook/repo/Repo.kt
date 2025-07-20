@@ -73,6 +73,39 @@ class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
         }
     }
 
+    fun getBookByCategory(categoryName :String):Flow<ResultState<List<bookModel>>> = callbackFlow {
+
+        trySend(ResultState.Loading)
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                var items : List<bookModel> = emptyList()
+
+                items = dataSnapshot.children.filter {
+                    it.getValue<bookModel>()!!.bookCategory==categoryName
+                }.map {
+                    it.getValue<bookModel>()!!
+                }
+
+                trySend(ResultState.Success(items))
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                trySend(ResultState.Error(databaseError.message))
+
+            }
+        }
+        firebaseDatabase.reference.child("Books").addValueEventListener(postListener)  //We want to listen the BookCategory child created in firebase
+
+        awaitClose {   //it is important as the callbacks will get generated it will nonstop listen so to stop that it is required and if not given the app will crash
+            close()
+        }
+
+    }
+
+
 
 
 

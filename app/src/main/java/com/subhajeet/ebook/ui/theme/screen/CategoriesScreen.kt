@@ -2,6 +2,7 @@ package com.subhajeet.ebook.ui.theme.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,12 +35,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import com.subhajeet.ebook.data.models.BookCategory
+import com.subhajeet.ebook.ui.theme.screen.nav.Routes
 import com.subhajeet.ebook.viewModel.MyViewModels
 
 
 @Composable
-fun CategoriesScreen(viewModels: MyViewModels = hiltViewModel()) {
+fun CategoriesScreen(viewModels: MyViewModels = hiltViewModel(), navController: NavController) {
     /*Text(text = "Categories",modifier= Modifier
         .fillMaxHeight()
         .fillMaxWidth())*/
@@ -59,8 +63,16 @@ fun CategoriesScreen(viewModels: MyViewModels = hiltViewModel()) {
 
                 items(getAllCategoryState.value.success){
                     CategoryCard(
+
                         imageUrl = it.categoryImageUrl,
-                        CategoryName = it.categoryName
+                        CategoryName = it.categoryName,
+                        onClick = {
+                            navController.navigate(
+                                Routes.BookByCategory(
+                                    categoryName = it.categoryName
+                                )
+                            )
+                        }
                     )
                 }
 
@@ -71,8 +83,10 @@ fun CategoriesScreen(viewModels: MyViewModels = hiltViewModel()) {
 
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CategoryCard(imageUrl:String,CategoryName:String) {
-    Card(modifier=Modifier.height(200.dp), elevation = CardDefaults.cardElevation(8.dp)) {
+fun CategoryCard(imageUrl:String,CategoryName:String, onClick:()-> Unit) {
+    Card(modifier=Modifier.height(200.dp).clickable {
+        onClick()
+    }, elevation = CardDefaults.cardElevation(8.dp),) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
 
            /* Image(

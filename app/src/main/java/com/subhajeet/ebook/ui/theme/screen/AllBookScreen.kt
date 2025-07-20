@@ -1,4 +1,5 @@
 package com.subhajeet.ebook.ui.theme.screen
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,10 +28,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import com.subhajeet.ebook.ui.theme.screen.nav.Routes
 import com.subhajeet.ebook.viewModel.MyViewModels
 
 @Composable
-fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel()) {
+fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel(), navController: NavController) {
 
     val getAllBookState = viewModels.getAllBookState.collectAsState()
     when{
@@ -43,7 +45,13 @@ fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel()) 
         getAllBookState.value.success.isNotEmpty() ->{
             LazyColumn {
                 items(getAllBookState.value.success){
-                    eachCard(title = it.bookName, author = it.bookAuthor, bookImage = it.bookImage)
+                    eachCard(title = it.bookName, author = it.bookAuthor, bookImage = it.bookImage,onClick = {
+                        navController.navigate(
+                            Routes.ViewPdfScreen(
+                                url = it.bookUrl
+                            )
+                        )
+                    })
                 }
             }
         }
@@ -52,8 +60,10 @@ fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel()) 
 
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun eachCard(title: String,author:String,bookImage:String ) {
-   Card(modifier = Modifier.padding(8.dp,28.dp,0.dp,0.dp).height(140.dp)) {
+fun eachCard(title: String,author:String,bookImage:String ,onClick:()-> Unit) {
+   Card(modifier = Modifier.padding(8.dp,28.dp,0.dp,0.dp).height(140.dp).clickable {
+       onClick()
+   }) {
 
 
 

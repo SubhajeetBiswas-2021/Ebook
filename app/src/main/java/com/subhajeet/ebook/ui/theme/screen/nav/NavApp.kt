@@ -9,6 +9,7 @@ import androidx.navigation.toRoute
 import com.subhajeet.ebook.ui.theme.screen.BookByCategory
 import com.subhajeet.ebook.ui.theme.screen.CategoriesScreen
 import com.subhajeet.ebook.ui.theme.screen.TabScreen
+import com.subhajeet.ebook.ui.theme.screen.ViewPdfScreen
 
 @Composable
 fun NavApp() {
@@ -33,6 +34,12 @@ fun NavApp() {
             BookByCategory(navController =navController,
                 categoryName= data.categoryName ?: ""
             )
+        }
+
+        composable<Routes.ViewPdfScreen> {
+            val data = it.toRoute<Routes.ViewPdfScreen>()
+            ViewPdfScreen(navController=navController,
+                url = data.url)
         }
     }
 

@@ -62,7 +62,7 @@ fun BookByCategory(modifier: Modifier = Modifier,categoryName: String,viewModels
 @Composable
 fun EachCard(title: String, author: String, bookImage: String) {
     Card(modifier = Modifier
-        .padding(8.dp, 28.dp, 0.dp, 0.dp)
+        .padding(8.dp, 34.dp, 0.dp, 0.dp)
         .height(140.dp)) {
 
 

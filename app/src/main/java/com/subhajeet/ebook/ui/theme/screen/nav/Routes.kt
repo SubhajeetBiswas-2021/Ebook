@@ -18,6 +18,10 @@ sealed class Routes {
         val categoryName:String?= null
     )
 
-
+    @Serializable
+    data class ViewPdfScreen(
+        val url:String,
+        val bookName:String?=null
+    )
 
 }

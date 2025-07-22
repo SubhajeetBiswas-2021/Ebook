@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -78,13 +79,13 @@ fun eachCard(title: String,author:String,bookImage:String ,onClick:()-> Unit) {
                model = bookImage,
                contentDescription = null,
                contentScale = ContentScale.Crop,
-               modifier = Modifier.size(110.dp).clip(RoundedCornerShape(7.dp)).padding(1.dp,25.dp,0.dp,0.dp)
+               modifier = Modifier.size(115.dp).clip(CircleShape).padding(6.dp,5.dp,0.dp,0.dp)
            )
 
                Spacer(modifier=Modifier.width(10.dp))
 
                 Text(text =title, fontSize = 20.sp, textAlign = TextAlign.Center, modifier = Modifier.align(
-                       Alignment.TopCenter).padding(6.dp,0.dp,0.dp,0.dp), fontStyle = FontStyle.Italic,
+                       Alignment.TopEnd).padding(6.dp,0.dp,0.dp,0.dp), fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold )
 
            Text(

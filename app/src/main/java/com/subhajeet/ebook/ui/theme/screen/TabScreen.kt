@@ -3,11 +3,13 @@ package com.subhajeet.ebook.ui.theme.screen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Category
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -15,7 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 //@Preview(showBackground = true, showSystemUi = true)
@@ -37,7 +42,7 @@ fun TabScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth()
         ) {
             tabs.forEachIndexed{ index,tab ->
-                Tab(modifier=Modifier.fillMaxWidth(),
+                Tab(modifier=Modifier.fillMaxWidth().padding(0.dp,23.dp,0.dp,0.dp),
                     selected = pagerState.currentPage == index,
                     onClick ={
                         scope.launch {
@@ -45,8 +50,12 @@ fun TabScreen(navController: NavController) {
                         }
                     },
                     text = {
-                        Text(text=tab.title)
+                        Text(text=tab.title,  fontWeight = FontWeight.Bold)
                     },
+                    icon = {
+                        Icon(imageVector = tab.icon,
+                            contentDescription ="" )
+                    }
                     )
         }
         }
@@ -56,7 +65,7 @@ fun TabScreen(navController: NavController) {
                 0 -> CategoriesScreen(
                     navController = navController
                 )
-                1 -> AllBookScreen(modifier = Modifier.fillMaxSize())
+                1 -> AllBookScreen(modifier = Modifier.fillMaxSize(),navController = navController)
             }
         }
     }

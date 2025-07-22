@@ -62,7 +62,7 @@ fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel(), 
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun eachCard(title: String,author:String,bookImage:String ,onClick:()-> Unit) {
-   Card(modifier = Modifier.padding(8.dp,28.dp,0.dp,0.dp).height(140.dp).clickable {
+   Card(modifier = Modifier .padding(16.dp,28.dp,16.dp,0.dp).height(140.dp).clickable {
        onClick()
    }) {
 

@@ -38,8 +38,11 @@ fun NavApp() {
 
         composable<Routes.ViewPdfScreen> {
             val data = it.toRoute<Routes.ViewPdfScreen>()
-            ViewPdfScreen(navController=navController,
-                url = data.url)
+            ViewPdfScreen(
+                navController = navController,
+                url = data.url,
+                bookName = data.bookName ?:""
+            )
         }
     }
 

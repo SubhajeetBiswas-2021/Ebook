@@ -48,7 +48,8 @@ fun AllBookScreen(modifier: Modifier,viewModels: MyViewModels= hiltViewModel(), 
                     eachCard(title = it.bookName, author = it.bookAuthor, bookImage = it.bookImage,onClick = {
                         navController.navigate(
                             Routes.ViewPdfScreen(
-                                url = it.bookUrl
+                                url = it.bookUrl,
+                                bookName= it.bookName
                             )
                         )
                     })

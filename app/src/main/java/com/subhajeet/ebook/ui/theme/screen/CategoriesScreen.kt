@@ -87,7 +87,7 @@ fun CategoryCard(imageUrl:String,CategoryName:String, onClick:()-> Unit) {
     Card(modifier=Modifier.height(200.dp).padding(2.dp,9.dp,11.dp,5.dp).clickable {
         onClick()
     }, elevation = CardDefaults.cardElevation(8.dp),) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter){
 
            /* Image(
                 imageVector = Icons.Default.Face,
@@ -98,10 +98,10 @@ fun CategoryCard(imageUrl:String,CategoryName:String, onClick:()-> Unit) {
                 model = imageUrl,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.height(70.dp).width(70.dp)
+                modifier = Modifier.height(156.dp).width(180.dp)
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
 
             Text(

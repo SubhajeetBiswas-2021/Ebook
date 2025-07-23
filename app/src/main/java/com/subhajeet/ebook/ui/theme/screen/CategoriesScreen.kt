@@ -84,7 +84,7 @@ fun CategoriesScreen(viewModels: MyViewModels = hiltViewModel(), navController: 
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CategoryCard(imageUrl:String,CategoryName:String, onClick:()-> Unit) {
-    Card(modifier=Modifier.height(200.dp).padding(2.dp,9.dp,11.dp,5.dp).clickable {
+    Card(modifier=Modifier.height(200.dp).padding(10.dp,6.dp,11.dp,9.dp).clickable {
         onClick()
     }, elevation = CardDefaults.cardElevation(8.dp),) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter){

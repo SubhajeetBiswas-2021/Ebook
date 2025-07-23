@@ -84,8 +84,8 @@ fun eachCard(title: String,author:String,bookImage:String ,onClick:()-> Unit) {
 
                Spacer(modifier=Modifier.width(10.dp))
 
-                Text(text =title, fontSize = 20.sp, textAlign = TextAlign.Center, modifier = Modifier.align(
-                       Alignment.TopEnd).padding(6.dp,0.dp,0.dp,0.dp), fontStyle = FontStyle.Italic,
+                Text(text =title, fontSize = 20.sp, textAlign = TextAlign.End, modifier = Modifier.align(
+                       Alignment.TopEnd).padding(6.dp,0.dp,6.dp,0.dp), fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold )
 
            Text(

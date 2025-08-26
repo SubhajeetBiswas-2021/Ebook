@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
 
+
+//Followed documentation:-(https://firebase.google.com/docs/database/android/read-and-write#kotlin_4 ) to read data from firebase
 class Repo @Inject constructor(private val firebaseDatabase: FirebaseDatabase){
 
 

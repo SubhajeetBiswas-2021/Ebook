@@ -1,4 +1,5 @@
-# **📚 Ebook Reader App**
+# **📚 Ebook Reader App**  
+[🔗Admin App](https://github.com/SubhajeetBiswas-2021/EbookAdminApp)
 
 A production-ready Ebook Android App designed to deliver a seamless, organized, and feature-rich reading experience. Built with modern Android development tools and best practices, it ensures smooth performance, clean architecture, and intuitive UI.
 
